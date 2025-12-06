@@ -20,7 +20,6 @@ The pipeline is designed for yeast (sacCer3) ChIP-seq data in narrowPeak format 
   - `numpy`
   - `joblib`
   - `tqdm`
-  - `psutil` (imported but not currently used)
 
 ## Script 1: Split narrowPeak by chromosome
 
