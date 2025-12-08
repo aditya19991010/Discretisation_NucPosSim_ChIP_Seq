@@ -21,19 +21,20 @@ The pipeline is designed for yeast (sacCer3) ChIP-seq data in narrowPeak format 
   - `joblib`
   - `tqdm`
 
-## Script 1: Split narrowPeak by chromosome
+## Script 1: Split Genome-wide Peak BED file by chromosome/gene
 
 **File:** `01_chr_split.sh` 
 
 This script takes all `*.narrowPeak` files in the input directory and splits each into per-chromosome BED files. Each chromosome-specific file is written into its own subdirectory.
 
 - Input directory (edit as needed):
-  - `inpdir="/home/aditya/epi_data_explore/PTM_explore_GSE202247/01_Data/processed/"`
+  - `inpdir=""/path/to/01_Data/processed/"`
 - Output directory (created if missing):
-  - `outdir="/home/aditya/epi_data_explore/PTM_explore_GSE202247/01_Data/processed/split_data"`
+  - `outdir=""/path/to/01_Data/processed/split_data"`
 
 For each `sample.narrowPeak`, it creates a subdirectory `${outdir}/sample` and writes files of the form `sample_chrX.bed` based on the first column (chromosome) in the narrowPeak file.
 
+For each `gene` consider using gtf for reference and use `bedtools` to intersect Peak BED.
 
 ## Script 2: Run NucPosSimulator per chromosome
 
@@ -55,7 +56,7 @@ For each `*chr*.bed` file, it:
 
 Before running, ensure:
 - `NucPosSimulator` and `params.txt` exist in `nucpossimulator_dir`.
-- The number of jobs (`--jobs 100`) suits your hardware. 
+- The number of jobs (`--jobs x`) suits your hardware. 
 
 ## Script 3: Round NucPosSimulator BED coordinates
 
